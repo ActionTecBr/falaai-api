@@ -463,6 +463,12 @@ type AuditoriaRiscoMetaV2 struct {
 
 // AuditoriaRiscoParticipantV2 defines model for AuditoriaRiscoParticipantV2.
 type AuditoriaRiscoParticipantV2 struct {
+	// Confidence Role inference confidence (high/medium/low)
+	Confidence *string `json:"confidence,omitempty"`
+
+	// Evidence Role inference evidence
+	Evidence *string `json:"evidence,omitempty"`
+
 	// Interlocutor Speaker label
 	Interlocutor *string `json:"interlocutor,omitempty"`
 
@@ -471,6 +477,9 @@ type AuditoriaRiscoParticipantV2 struct {
 
 	// Role Role (agent/client/bot/unknown)
 	Role *string `json:"role,omitempty"`
+
+	// Source Role source (input/inferred)
+	Source *string `json:"source,omitempty"`
 }
 
 // AuditoriaRiscoParticipantsV2 defines model for AuditoriaRiscoParticipantsV2.
@@ -1376,7 +1385,7 @@ type ClientInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/analyze/auditoriaRisco',
+	//     'https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     json={
 	//         'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -1390,7 +1399,7 @@ type ClientInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/analyze/auditoriaRisco \
+	// curl https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -H 'Content-Type: application/json' \
 	//   -d '{
@@ -1415,7 +1424,7 @@ type ClientInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/analyze/auditoriaRisco',
+	//     'https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     json={
 	//         'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -1429,7 +1438,7 @@ type ClientInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/analyze/auditoriaRisco \
+	// curl https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -H 'Content-Type: application/json' \
 	//   -d '{
@@ -1454,7 +1463,7 @@ type ClientInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/analyze/diagnostic',
+	//     'https://api01-falaai.action.tec.br/v1/analyze/diagnostic',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     json={
 	//         'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -1467,7 +1476,7 @@ type ClientInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/analyze/diagnostic \
+	// curl https://api01-falaai.action.tec.br/v1/analyze/diagnostic \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -H 'Content-Type: application/json' \
 	//   -d '{
@@ -1491,7 +1500,7 @@ type ClientInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/analyze/diagnostic',
+	//     'https://api01-falaai.action.tec.br/v1/analyze/diagnostic',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     json={
 	//         'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -1504,7 +1513,7 @@ type ClientInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/analyze/diagnostic \
+	// curl https://api01-falaai.action.tec.br/v1/analyze/diagnostic \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -H 'Content-Type: application/json' \
 	//   -d '{
@@ -1537,7 +1546,7 @@ type ClientInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/audio/transcriptions',
+	//     'https://api01-falaai.action.tec.br/v1/audio/transcriptions',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     files={'file': open('call.mp3', 'rb')},
 	//     data={'model': 'falaai-transcribe-1', 'language': 'pt'}
@@ -1547,7 +1556,7 @@ type ClientInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/audio/transcriptions \
+	// curl https://api01-falaai.action.tec.br/v1/audio/transcriptions \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -F 'file=@call.mp3' \
 	//   -F 'model=falaai-transcribe-1' \
@@ -1693,7 +1702,7 @@ func (c *Client) GetVersionApiVersionGet(ctx context.Context, reqEditors ...Requ
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/analyze/auditoriaRisco',
+//	'https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	json={
 //	    'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -1709,7 +1718,7 @@ func (c *Client) GetVersionApiVersionGet(ctx context.Context, reqEditors ...Requ
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/analyze/auditoriaRisco \
+//	curl https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -H 'Content-Type: application/json' \
 //	  -d '{
@@ -1746,7 +1755,7 @@ func (c *Client) CreateAuditoriaRiscoV1AnalyzeAuditoriaRiscoPostWithBody(ctx con
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/analyze/auditoriaRisco',
+//	'https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	json={
 //	    'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -1762,7 +1771,7 @@ func (c *Client) CreateAuditoriaRiscoV1AnalyzeAuditoriaRiscoPostWithBody(ctx con
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/analyze/auditoriaRisco \
+//	curl https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -H 'Content-Type: application/json' \
 //	  -d '{
@@ -1799,7 +1808,7 @@ func (c *Client) CreateAuditoriaRiscoV1AnalyzeAuditoriaRiscoPost(ctx context.Con
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/analyze/diagnostic',
+//	'https://api01-falaai.action.tec.br/v1/analyze/diagnostic',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	json={
 //	    'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -1814,7 +1823,7 @@ func (c *Client) CreateAuditoriaRiscoV1AnalyzeAuditoriaRiscoPost(ctx context.Con
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/analyze/diagnostic \
+//	curl https://api01-falaai.action.tec.br/v1/analyze/diagnostic \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -H 'Content-Type: application/json' \
 //	  -d '{
@@ -1850,7 +1859,7 @@ func (c *Client) CreateDiagnosticV1AnalyzeDiagnosticPostWithBody(ctx context.Con
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/analyze/diagnostic',
+//	'https://api01-falaai.action.tec.br/v1/analyze/diagnostic',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	json={
 //	    'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -1865,7 +1874,7 @@ func (c *Client) CreateDiagnosticV1AnalyzeDiagnosticPostWithBody(ctx context.Con
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/analyze/diagnostic \
+//	curl https://api01-falaai.action.tec.br/v1/analyze/diagnostic \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -H 'Content-Type: application/json' \
 //	  -d '{
@@ -1910,7 +1919,7 @@ func (c *Client) CreateDiagnosticV1AnalyzeDiagnosticPost(ctx context.Context, bo
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/audio/transcriptions',
+//	'https://api01-falaai.action.tec.br/v1/audio/transcriptions',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	files={'file': open('call.mp3', 'rb')},
 //	data={'model': 'falaai-transcribe-1', 'language': 'pt'}
@@ -1922,7 +1931,7 @@ func (c *Client) CreateDiagnosticV1AnalyzeDiagnosticPost(ctx context.Context, bo
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/audio/transcriptions \
+//	curl https://api01-falaai.action.tec.br/v1/audio/transcriptions \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -F 'file=@call.mp3' \
 //	  -F 'model=falaai-transcribe-1' \
@@ -2969,7 +2978,7 @@ type ClientWithResponsesInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/analyze/auditoriaRisco',
+	//     'https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     json={
 	//         'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -2983,7 +2992,7 @@ type ClientWithResponsesInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/analyze/auditoriaRisco \
+	// curl https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -H 'Content-Type: application/json' \
 	//   -d '{
@@ -3008,7 +3017,7 @@ type ClientWithResponsesInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/analyze/auditoriaRisco',
+	//     'https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     json={
 	//         'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -3022,7 +3031,7 @@ type ClientWithResponsesInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/analyze/auditoriaRisco \
+	// curl https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -H 'Content-Type: application/json' \
 	//   -d '{
@@ -3047,7 +3056,7 @@ type ClientWithResponsesInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/analyze/diagnostic',
+	//     'https://api01-falaai.action.tec.br/v1/analyze/diagnostic',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     json={
 	//         'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -3060,7 +3069,7 @@ type ClientWithResponsesInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/analyze/diagnostic \
+	// curl https://api01-falaai.action.tec.br/v1/analyze/diagnostic \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -H 'Content-Type: application/json' \
 	//   -d '{
@@ -3084,7 +3093,7 @@ type ClientWithResponsesInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/analyze/diagnostic',
+	//     'https://api01-falaai.action.tec.br/v1/analyze/diagnostic',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     json={
 	//         'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -3097,7 +3106,7 @@ type ClientWithResponsesInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/analyze/diagnostic \
+	// curl https://api01-falaai.action.tec.br/v1/analyze/diagnostic \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -H 'Content-Type: application/json' \
 	//   -d '{
@@ -3130,7 +3139,7 @@ type ClientWithResponsesInterface interface {
 	// import httpx
 	//
 	// response = httpx.post(
-	//     'https://api.fala.ai/v1/audio/transcriptions',
+	//     'https://api01-falaai.action.tec.br/v1/audio/transcriptions',
 	//     headers={'Authorization': 'Bearer fai_xxx'},
 	//     files={'file': open('call.mp3', 'rb')},
 	//     data={'model': 'falaai-transcribe-1', 'language': 'pt'}
@@ -3140,7 +3149,7 @@ type ClientWithResponsesInterface interface {
 	//
 	// **cURL:**
 	// ```bash
-	// curl https://api.fala.ai/v1/audio/transcriptions \
+	// curl https://api01-falaai.action.tec.br/v1/audio/transcriptions \
 	//   -H 'Authorization: Bearer fai_xxx' \
 	//   -F 'file=@call.mp3' \
 	//   -F 'model=falaai-transcribe-1' \
@@ -4047,7 +4056,7 @@ func (c *ClientWithResponses) GetVersionApiVersionGetWithResponse(ctx context.Co
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/analyze/auditoriaRisco',
+//	'https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	json={
 //	    'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -4063,7 +4072,7 @@ func (c *ClientWithResponses) GetVersionApiVersionGetWithResponse(ctx context.Co
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/analyze/auditoriaRisco \
+//	curl https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -H 'Content-Type: application/json' \
 //	  -d '{
@@ -4096,7 +4105,7 @@ func (c *ClientWithResponses) CreateAuditoriaRiscoV1AnalyzeAuditoriaRiscoPostWit
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/analyze/auditoriaRisco',
+//	'https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	json={
 //	    'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -4112,7 +4121,7 @@ func (c *ClientWithResponses) CreateAuditoriaRiscoV1AnalyzeAuditoriaRiscoPostWit
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/analyze/auditoriaRisco \
+//	curl https://api01-falaai.action.tec.br/v1/analyze/auditoriaRisco \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -H 'Content-Type: application/json' \
 //	  -d '{
@@ -4145,7 +4154,7 @@ func (c *ClientWithResponses) CreateAuditoriaRiscoV1AnalyzeAuditoriaRiscoPostWit
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/analyze/diagnostic',
+//	'https://api01-falaai.action.tec.br/v1/analyze/diagnostic',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	json={
 //	    'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -4160,7 +4169,7 @@ func (c *ClientWithResponses) CreateAuditoriaRiscoV1AnalyzeAuditoriaRiscoPostWit
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/analyze/diagnostic \
+//	curl https://api01-falaai.action.tec.br/v1/analyze/diagnostic \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -H 'Content-Type: application/json' \
 //	  -d '{
@@ -4192,7 +4201,7 @@ func (c *ClientWithResponses) CreateDiagnosticV1AnalyzeDiagnosticPostWithBodyWit
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/analyze/diagnostic',
+//	'https://api01-falaai.action.tec.br/v1/analyze/diagnostic',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	json={
 //	    'dialog': 'Speaker 1: [00:00:00.540 - 00:00:01.139] Hi, Alex.',
@@ -4207,7 +4216,7 @@ func (c *ClientWithResponses) CreateDiagnosticV1AnalyzeDiagnosticPostWithBodyWit
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/analyze/diagnostic \
+//	curl https://api01-falaai.action.tec.br/v1/analyze/diagnostic \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -H 'Content-Type: application/json' \
 //	  -d '{
@@ -4248,7 +4257,7 @@ func (c *ClientWithResponses) CreateDiagnosticV1AnalyzeDiagnosticPostWithRespons
 //
 // response = httpx.post(
 //
-//	'https://api.fala.ai/v1/audio/transcriptions',
+//	'https://api01-falaai.action.tec.br/v1/audio/transcriptions',
 //	headers={'Authorization': 'Bearer fai_xxx'},
 //	files={'file': open('call.mp3', 'rb')},
 //	data={'model': 'falaai-transcribe-1', 'language': 'pt'}
@@ -4260,7 +4269,7 @@ func (c *ClientWithResponses) CreateDiagnosticV1AnalyzeDiagnosticPostWithRespons
 // **cURL:**
 // ```bash
 //
-//	curl https://api.fala.ai/v1/audio/transcriptions \
+//	curl https://api01-falaai.action.tec.br/v1/audio/transcriptions \
 //	  -H 'Authorization: Bearer fai_xxx' \
 //	  -F 'file=@call.mp3' \
 //	  -F 'model=falaai-transcribe-1' \
