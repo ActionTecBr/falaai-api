@@ -14,8 +14,9 @@ FalaAI API turns conversations into auditable business intelligence, in three st
 2. **Diagnose** - summary, reason, recommended action, topic and sentiment per conversation.
 3. **Audit compliance** - risk score and violations against **COPC CX** and **ISO 18295-1**.
 
-It works with phone calls, WhatsApp, Telegram, chat, email, PDF and images.
-Three REST endpoints, one API key, no setup.
+It works with **phone calls and call recordings** (PABX IP, Asterisk, FreePBX, contact center),
+**messaging** (WhatsApp, Telegram, web chat, SMS) and email - anything that can be turned into
+text. Three REST endpoints, one API key, no setup.
 
 ## Who it's for
 
