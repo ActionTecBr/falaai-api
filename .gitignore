@@ -1,0 +1,9 @@
+# Test artifacts
+tests/e2e/logs/
+
+# Backups
+*.bak
+
+# Go
+*.test
+*.out
